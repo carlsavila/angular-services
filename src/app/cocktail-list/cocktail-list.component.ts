@@ -16,7 +16,14 @@ export class CocktailListComponent {
 
   private cocktailService = inject(CocktailService);
 
-  ngOnInit() {
-      this.cocktails = this.cocktailService.getCocktails();
+  ngOnInit(): void {
+     //this.cocktails = this.cocktailService.getCocktails();
+
+     this.cocktailService.getCocktails().subscribe(
+      cocktailsFromJsonFile => {
+        console.log(cocktailsFromJsonFile)
+        this.cocktails = cocktailsFromJsonFile;
+      }
+     )
   }
 }

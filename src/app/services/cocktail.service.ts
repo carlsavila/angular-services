@@ -1,5 +1,7 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input, inject } from '@angular/core';
 import { Cocktail } from '../models/cocktail';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,9 @@ export class CocktailService {
 
   constructor() { }
 
-  @Input()
-  cocktails: Cocktail[] = [
+  // @Input()
+  cocktails: Cocktail[] = [];
+  /* [
     new Cocktail(
       "Cendrillon (Cinderella)", 15, 
       "https://www.cocktailmag.fr/media/k2/items/cache/6ef598b10d1539793d4ace8d8b7b613f_M.jpg"),
@@ -23,5 +26,13 @@ export class CocktailService {
 
   getCocktails() :Cocktail[] {
     return this.cocktails;
+  } */
+
+  private http = inject(HttpClient);
+
+  getCocktails(): Observable<Cocktail[]> {
+    const obsCocktails = this.http.get<Cocktail[]>("assets/cocktails.json");
+    return obsCocktails;
   }
+
 }
