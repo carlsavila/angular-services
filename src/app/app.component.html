@@ -1,3 +1,15 @@
-<div style="margin: 0 auto;">
+<div class="component">
+    <h1>L'image Nasa du jour avec un Cocktail</h1>
+
+    <div class="imageoftheday">
+            <h2>{{imgOfTheDay.title}}</h2>
+            <img src={{imgOfTheDay.url}} alt={{imgOfTheDay.title}}>
+            <p>{{imgOfTheDay.date}}</p>
+            <p>{{imgOfTheDay.explanation}}</p>
+            <p>{{imgOfTheDay.media_type}}</p>
+            <p>{{imgOfTheDay.service_version}}</p>
+            <p>{{imgOfTheDay.hdurl}}</p>
+    </div>
+
     <app-cocktail-list (click)="onClick()"></app-cocktail-list>
 </div>
