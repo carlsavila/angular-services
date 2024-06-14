@@ -12,5 +12,5 @@
             <p>{{imgOfTheDay.copyright}}</p>
     </div>
 
-    <app-cocktail-list (click)="onClick()"></app-cocktail-list>
+    <app-cocktail-list (cocktailEmitter)="onGetCocktail($event)"></app-cocktail-list>
 </div>

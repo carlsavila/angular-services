@@ -5,6 +5,7 @@ import { HelloWorldService } from './services/hello-world.service';
 import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
 import { NasaService } from './services/nasa.service';
 import { Imgoftheday } from './models/imgoftheday';
+import { Cocktail } from './models/cocktail';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { Imgoftheday } from './models/imgoftheday';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Services';
+  title = 'Atelier Services';
 
   // Atelier : injection de service:
   //1er méthode avec le constructeur
@@ -24,8 +25,9 @@ export class AppComponent {
   private helloWorldService = inject(HelloWorldService); 
 
   private nasaService = inject(NasaService);
+  // Initialisation fixes error : title undifined
   public imgOfTheDay: Imgoftheday = {
-    copyright : "string",
+    copyright : "",
     date: new Date(), 
     explanation: "",
     hdurl: "",
@@ -35,17 +37,23 @@ export class AppComponent {
     url : "",
   };
 
-  onClick () {
-    console.log(this.helloWorldService.getHelloWorld());
-    alert("C'est bon! Enregistré!")
+  clickedCocktail!: Cocktail;
+
+  onGetCocktail (event: Cocktail): void {
+    //For  DEBUG only : console.log(this.helloWorldService.getHelloWorld());
+    this.clickedCocktail = event;
+    //For  DEBUG only : 
+    console.log(event.name);
+    alert("C'est bon! Enregistré ! :) Très bon choix :P " + event.name );
+
   }
 
   ngOnInit(): void {
     this.nasaService.getImageOfTheDay().subscribe(
       imageFromNasa => {
-        console.log(imageFromNasa);
+        //For DEBUG only : console.log(imageFromNasa);
         this.imgOfTheDay = imageFromNasa;
-        console.log(this.imgOfTheDay);
+        //For DEBUG only : console.log(this.imgOfTheDay);
       }
     )
   }

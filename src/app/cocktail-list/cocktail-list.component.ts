@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { Cocktail } from '../models/cocktail';
 import { CocktailService } from '../services/cocktail.service';
 import { NgFor } from '@angular/common';
@@ -16,9 +16,19 @@ export class CocktailListComponent {
 
   private cocktailService = inject(CocktailService);
 
+  @Output()
+  cocktailEmitter : EventEmitter<Cocktail> = new EventEmitter();
+  cocktailToEmit!: Cocktail;
+
+  sendCocktail (cocktail: Cocktail){
+    this.cocktailToEmit = cocktail;
+    this.cocktailEmitter.emit(this.cocktailToEmit);
+  }
+
   ngOnInit(): void {
      //this.cocktails = this.cocktailService.getCocktails();
 
+     // subscribe implementation
      this.cocktailService.getCocktails().subscribe(
       cocktailsFromJsonFile => {
         console.log(cocktailsFromJsonFile)

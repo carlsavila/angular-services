@@ -28,8 +28,9 @@ export class CocktailService {
     return this.cocktails;
   } */
 
+  // HttpClient implementation
   private http = inject(HttpClient);
-
+  // Observable with json file read implementation
   getCocktails(): Observable<Cocktail[]> {
     const obsCocktails = this.http.get<Cocktail[]>("assets/cocktails.json");
     return obsCocktails;
