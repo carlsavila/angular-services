@@ -16,7 +16,7 @@ import { Imgoftheday } from './models/imgoftheday';
 export class AppComponent {
   title = 'Services';
 
-  // injection de service:
+  // Atelier : injection de service:
   //1er méthode avec le constructeur
   /*   constructor(private helloWorldService: HelloWorldService) { };   */
 
@@ -24,7 +24,16 @@ export class AppComponent {
   private helloWorldService = inject(HelloWorldService); 
 
   private nasaService = inject(NasaService);
-  public imgOfTheDay!: Imgoftheday;
+  public imgOfTheDay: Imgoftheday = {
+    copyright : "string",
+    date: new Date(), 
+    explanation: "",
+    hdurl: "",
+    media_type: "",
+    service_version: "",
+    title: "",
+    url : "",
+  };
 
   onClick () {
     console.log(this.helloWorldService.getHelloWorld());
@@ -36,6 +45,7 @@ export class AppComponent {
       imageFromNasa => {
         console.log(imageFromNasa);
         this.imgOfTheDay = imageFromNasa;
+        console.log(this.imgOfTheDay);
       }
     )
   }

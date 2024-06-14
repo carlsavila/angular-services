@@ -1,4 +1,6 @@
 export interface Imgoftheday {
+
+    copyright : string;
     date: Date;
     explanation: string;
     hdurl: string;

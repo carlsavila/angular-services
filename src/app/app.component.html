@@ -3,12 +3,13 @@
 
     <div class="imageoftheday">
             <h2>{{imgOfTheDay.title}}</h2>
-            <img src={{imgOfTheDay.url}} alt={{imgOfTheDay.title}}>
             <p>{{imgOfTheDay.date}}</p>
+            <img src={{imgOfTheDay.url}} alt={{imgOfTheDay.title}}>
             <p>{{imgOfTheDay.explanation}}</p>
             <p>{{imgOfTheDay.media_type}}</p>
             <p>{{imgOfTheDay.service_version}}</p>
             <p>{{imgOfTheDay.hdurl}}</p>
+            <p>{{imgOfTheDay.copyright}}</p>
     </div>
 
     <app-cocktail-list (click)="onClick()"></app-cocktail-list>
